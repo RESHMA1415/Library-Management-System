@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body{
+
+            margin:0;
+            padding:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:linear-gradient(to right, #1d2671, #c33764);
+            height:100vh;
+        }
+
+        .container{
+
+            width:80%;
+            margin:auto;
+            padding-top:50px;
+        }
+
+        h1{
+
+            text-align:center;
+            color:white;
+            margin-bottom:50px;
+            font-size:40px;
+        }
+
+        .card-container{
+
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+
+        .card{
+
+            width:250px;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+        }
+
+        .card:hover{
+
+            transform:translateY(-10px);
+        }
+
+        .card h2{
+
+            color:#333;
+            margin-bottom:20px;
+        }
+
+        .card a{
+
+            display:inline-block;
+            padding:10px 20px;
+            background-color:#007bff;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .card a:hover{
+
+            background-color:#0056b3;
+        }
+
+
+        .logout{
+
+            text-align:center;
+            margin-top:50px;
+        }
+
+        .logout a{
+
+            padding:12px 25px;
+            background:red;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+            font-size:16px;
+        }
+
+        .logout a:hover{
+
+            background:darkred;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+   <div class="container">
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="card-container">
+
+        <div class="card">
+
+            <h2>View Books</h2>
+
+            <a href="/books/">
+
+                Open
+
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Add Books</h2>
+
+            <a href="/add-book/">
+
+                Add
+
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Issue Books</h2>
+
+            <a href="/issue-book/">
+
+                Issue
+
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Issued Books</h2>
+
+            <a href="/issued-books/">
+
+                View
+
+            </a>
+
+        
+
+</div>
+     <div class="card">
+
+    <h2>Add Librarian</h2>
+
+    <a href="/add-librarian/">
+
+        Open
+
+    </a>
+
+</div>
+     <div class="card">
+
+    <h2>Manage Librarians</h2>
+
+    <a href="/manage-librarians/">
+
+        Open
+
+    </a>
+
+</div>
+       <div class="card">
+
+    <h2>Manage Students</h2>
+
+    <a href="/manage-students/">
+
+        Open
+
+    </a>
+
+</div>
+
+    </div>
+
+   </div>
+
+<div style="width:70%; margin:auto; margin-top:50px;">
+
+    <canvas id="myChart"></canvas>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+
+            'Books',
+
+            'Students',
+
+            'Librarians',
+
+            'Issued',
+
+            'Pending'
+
+        ],
+
+        
+
+        datasets: [{
+
+            label: 'Library Statistics',
+
+            data: [10, 5, 2, 7, 3],
+
+            borderWidth: 1
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

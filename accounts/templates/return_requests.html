@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Return Requests</title>
+
+</head>
+
+<body>
+
+    <h1>Return Requests</h1>
+
+    <table border="1">
+
+        <tr>
+
+            <th>Student</th>
+
+            <th>Book</th>
+
+            <th>Fine</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        {% for item in books %}
+
+        <tr>
+
+            <td>{{ item.student.username }}</td>
+
+            <td>{{ item.book.title }}</td>
+
+            <td>₹ {{ item.fine }}</td>
+
+            <td>
+
+                <a href="/return-book/{{ item.id }}/">
+
+                    Approve Return
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+
+</html>

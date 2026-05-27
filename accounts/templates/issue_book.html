@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Issue Book</title>
+
+    <style>
+
+        body{
+
+            margin:0;
+
+            padding:40px;
+
+            font-family:Arial, Helvetica, sans-serif;
+
+            background:linear-gradient(to right, #36d1dc, #5b86e5);
+
+            min-height:100vh;
+        }
+
+        .container{
+
+            width:400px;
+
+            background:white;
+
+            padding:35px;
+
+            border-radius:12px;
+
+            box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+
+            margin:auto;
+
+            margin-bottom:30px;
+        }
+
+        h1{
+
+            text-align:center;
+
+            color:#333;
+
+            margin-bottom:30px;
+        }
+
+        label{
+
+            font-weight:bold;
+
+            color:#444;
+        }
+
+        select{
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:10px;
+
+            margin-bottom:20px;
+
+            border:1px solid #ccc;
+
+            border-radius:5px;
+
+            font-size:15px;
+        }
+
+        button{
+
+            width:100%;
+
+            padding:12px;
+
+            border:none;
+
+            background-color:#007bff;
+
+            color:white;
+
+            font-size:16px;
+
+            border-radius:5px;
+
+            cursor:pointer;
+        }
+
+        button:hover{
+
+            background-color:#0056b3;
+        }
+
+        .home-btn{
+
+            display:inline-block;
+
+            padding:14px 30px;
+
+            background:linear-gradient(to right, #007bff, #00c6ff);
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:30px;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            box-shadow:0px 4px 15px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+        }
+
+        .home-btn:hover{
+
+            transform:scale(1.05);
+
+            background:linear-gradient(to right, #0056b3, #0096c7);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Issue Book</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Select Student</label>
+
+            <select name="student">
+
+                {% for student in students %}
+
+                <option value="{{ student.id }}">
+
+                    {{ student.username }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <label>Select Book</label>
+
+            <select name="book">
+
+                {% for book in books %}
+
+                <option value="{{ book.id }}">
+
+                    {{ book.title }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <button type="submit">
+
+                Issue Book
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        {% if request.user.role == 'admin' %}
+
+<a href="/admin-dashboard/"
+   class="home-btn">
+
+    Back Home
+
+</a>
+
+{% elif request.user.role == 'librarian' %}
+
+<a href="/librarian-dashboard/"
+   class="home-btn">
+
+    Back Home
+
+</a>
+
+{% endif %}
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Fine Details</title>
+
+    <style>
+
+        body{
+
+            font-family:Arial;
+            background:#f0f2f5;
+            text-align:center;
+            padding-top:100px;
+        }
+
+        .box{
+
+            width:400px;
+            margin:auto;
+            background:white;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px gray;
+        }
+
+        h1{
+
+            color:red;
+        }
+
+        a{
+
+            display:inline-block;
+            margin-top:20px;
+            padding:10px 20px;
+            background:#007bff;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Book Returned</h1>
+
+        <h2>
+
+            Fine Amount:
+
+            ₹ {{ issued_book.fine }}
+
+        </h2>
+
+        <a href="/issued-books/">
+
+            Back
+
+        </a>
+
+    </div>
+
+</body>
+
+</html>

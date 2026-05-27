@@ -1,0 +1,29 @@
+
+from django.db import models
+
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+
+    ROLE_CHOICES = (
+
+        ('admin', 'Admin'),
+
+        ('librarian', 'Librarian'),
+
+        ('student', 'Student'),
+
+    )
+
+    role = models.CharField(
+
+        max_length=20,
+
+        choices=ROLE_CHOICES
+
+    )
+
+    is_approved = models.BooleanField(default=False)
+
+    is_blocked = models.BooleanField(default=False)
