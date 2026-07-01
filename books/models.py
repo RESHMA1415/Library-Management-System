@@ -24,21 +24,9 @@ User = get_user_model()
 
 class IssuedBook(models.Model):
 
-    student = models.ForeignKey(
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
 
-        User,
-
-        on_delete=models.CASCADE
-
-    )
-
-    book = models.ForeignKey(
-
-        Book,
-
-        on_delete=models.CASCADE
-
-    )
+    book = models.ForeignKey(Book,on_delete=models.CASCADE)
 
     issue_date = models.DateField(auto_now_add=True)
 

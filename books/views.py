@@ -4,7 +4,7 @@ from .models import Book
 
 from django.db.models import Q
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
 
 from django.http import HttpResponse
 

@@ -31,6 +31,16 @@ def login_view(request):
 
         if user is not None:
 
+            if user.role == 'student':
+
+                if user.is_approved == False:
+
+                    return HttpResponse(
+
+                        "Waiting for Admin Approval"
+
+                    )
+
             if user.role == 'librarian':
 
                 if user.is_blocked == True:
@@ -87,7 +97,41 @@ def register_view(request):
 
 def admin_dashboard(request):
 
-    return render(request, 'admin_dashboard.html')
+    total_books = Book.objects.count()
+   
+    total_students = CustomUser.objects.filter(
+
+        role='student'
+
+    ).count()
+
+    total_librarians = CustomUser.objects.filter(
+
+        role='librarian'
+
+    ).count()
+
+    issued_books = IssuedBook.objects.count()
+
+    return render(
+
+        request,
+
+        'admin_dashboard.html',
+
+        {
+
+            'total_books': total_books,
+
+            'total_students': total_students,
+
+            'total_librarians': total_librarians,
+
+            'issued_books': issued_books
+
+        }
+
+    )
 
 
 def librarian_dashboard(request):
@@ -105,46 +149,6 @@ def logout_view(request):
     logout(request)
 
     return redirect('login')
-
-
-
-# def admin_dashboard(request):
-
-#     total_books = Book.objects.count()
-
-#     total_students = CustomUser.objects.filter(
-
-#         role='student'
-
-#     ).count()
-
-#     total_librarians = CustomUser.objects.filter(
-
-#         role='librarian'
-
-#     ).count()
-
-#     issued_books = IssuedBook.objects.count()
-
-#     return render(
-
-#         request,
-
-#         'admin_dashboard.html',
-
-#         {
-
-#             'total_books': total_books,
-
-#             'total_students': total_students,
-
-#             'total_librarians': total_librarians,
-
-#             'issued_books': issued_books
-
-#         }
-
-#     )
 
 
 def add_librarian(request):
@@ -180,8 +184,6 @@ def add_librarian(request):
         'add_librarian.html'
 
     )
-
-
 
 
 def manage_librarians(request):
@@ -234,6 +236,7 @@ def edit_librarian(request, id):
         }
 
     )
+
 
 def delete_librarian(request, id):
 
@@ -302,3 +305,39 @@ def delete_student(request, id):
     student.delete()
 
     return redirect('manage_students')
+
+
+def pending_students(request):
+
+    students = CustomUser.objects.filter(
+
+        role='student',
+
+        is_approved=False
+
+    )
+
+    return render(
+
+        request,
+
+        'pending_students.html',
+
+        {
+
+            'students': students
+
+        }
+
+    )
+
+
+def approve_student(request, id):
+
+    student = CustomUser.objects.get(id=id)
+
+    student.is_approved = True
+
+    student.save()
+
+    return redirect('pending_students')   

@@ -11,42 +11,18 @@ from books.models import Book
 
 class IssueBook(models.Model):
 
-    student = models.ForeignKey(
+    student = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
 
-        CustomUser,
+    book = models.ForeignKey(Book,on_delete=models.CASCADE)
 
-        on_delete=models.CASCADE
+    issue_date = models.DateField(default=timezone.now)
 
-    )
+    due_date = models.DateField(default=timezone.now() + timedelta(days=7))
 
-    book = models.ForeignKey(
+    fine = models.IntegerField(default=0)
 
-        Book,
-
-        on_delete=models.CASCADE
-
-    )
-
-    issue_date = models.DateField(
-
-        default=timezone.now
-
-    )
-
-    due_date = models.DateField(
-
-        default=timezone.now() + timedelta(days=7)
-
-    )
-
-    fine = models.IntegerField(
-
-        default=0
-
-    )
-    return_request = models.BooleanField(
-    default=False
-)
+    return_request = models.BooleanField(default=False)
+    
 
     def __str__(self):
 
@@ -55,28 +31,10 @@ class IssueBook(models.Model):
 
 class BookRequest(models.Model):
 
-    student = models.ForeignKey(
+    student = models.ForeignKey(CustomUser,on_delete=models.CASCADE )
 
-        CustomUser,
+    book = models.ForeignKey(Book,on_delete=models.CASCADE)
 
-        on_delete=models.CASCADE
-
-    )
-
-    book = models.ForeignKey(
-
-        Book,
-
-        on_delete=models.CASCADE
-
-    )
-
-    status = models.CharField(
-
-        max_length=20,
-
-        default='Pending'
-
-    )
+    status = models.CharField(max_length=20,default='Pending')
 
    

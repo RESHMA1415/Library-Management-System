@@ -27,3 +27,6 @@ class CustomUser(AbstractUser):
     is_approved = models.BooleanField(default=False)
 
     is_blocked = models.BooleanField(default=False)
+
+
+    
