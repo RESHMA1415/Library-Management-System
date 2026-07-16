@@ -195,9 +195,7 @@ MCA Graduate
 
 Python & Django Developer
 
-Software Trainer
-
----
+HOSTING : https://Reshma.pythonanywhere.com
 
 ## 📄 License
 
