@@ -151,34 +151,6 @@ http://127.0.0.1:8000/
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-
-(Add Screenshot)
-
-### Login Page
-
-(Add Screenshot)
-
-### Dashboard
-
-(Add Screenshot)
-
-### Book List
-
-(Add Screenshot)
-
-### Reservation Page
-
-(Add Screenshot)
-
-### Reports
-
-(Add Screenshot)
-
----
-
 ## 📊 Database Models
 
 - User
